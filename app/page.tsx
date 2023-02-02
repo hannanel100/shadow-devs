@@ -1,8 +1,12 @@
+import { Hero } from "../components";
+import HowItWorks from "./HowItWorks";
+
 export default function Home() {
   return (
     <main className="font-primary">
-      hello <span className="font-serif"> dev </span>shadows
+      <Hero />
+      {/* cool section separator */}
+      <HowItWorks />
     </main>
   );
 }
-``;

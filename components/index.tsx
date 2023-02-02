@@ -1,4 +1,4 @@
 import Button from "./Button";
 import Navbar from "./Navbar";
-
-export { Button, Navbar };
+import Hero from "./Hero";
+export { Button, Navbar, Hero };

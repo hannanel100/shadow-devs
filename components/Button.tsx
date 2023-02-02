@@ -10,7 +10,7 @@ type ButtonProps = {
   type?: "button" | "submit" | "reset";
   icon?: string;
 };
-const Button = ({ text, onClick, type, icon }: ButtonProps) => {
+const Button = ({ text, onClick, type = "button", icon }: ButtonProps) => {
   // tailwindcss classes for each type of button
   const buttonClasses = {
     button: "bg-slate-900 hover:bg-slate-700",
