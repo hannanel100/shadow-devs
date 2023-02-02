@@ -13,9 +13,9 @@ type ButtonProps = {
 const Button = ({ text, onClick, type = "button", icon }: ButtonProps) => {
   // tailwindcss classes for each type of button
   const buttonClasses = {
-    button: "bg-slate-900 hover:bg-slate-700",
-    reset: "bg-gray-500 hover:bg-gray-700",
-    submit: "bg-green-500 hover:bg-green-700",
+    button: "bg-dark-purple hover:opacity-80",
+    reset: "bg-goldenrod hover:opacity-80",
+    submit: "bg-opal hover:opacity-80",
   };
 
   return (
