@@ -24,7 +24,7 @@ const Button = ({ text, onClick, type = "button", icon }: ButtonProps) => {
       onClick={onClick}
       className={`${
         type ? buttonClasses[type] : ""
-      }  flex items-center rounded-3xl py-2 px-4 font-bold uppercase text-white`}
+      }  flex items-center rounded-3xl py-2 px-4 font-bold uppercase text-white transition duration-300 ease-in-out`}
     >
       {text}
       {icon && <FaGithub data-testid="icon" className="ml-2" />}
