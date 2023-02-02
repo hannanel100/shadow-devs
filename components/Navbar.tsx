@@ -9,8 +9,9 @@ const Navbar = () => {
       role="navbar"
       className="mt-4 flex items-center justify-between border-b border-solid border-slate-300 pb-4 font-navbar font-bold"
     >
-      <div className="ml-4">
+      <div className="ml-4 flex gap-4">
         <Image width={80} height={80} src="/next.svg" alt="logo" />
+        <h5>Shadow Devs</h5>
       </div>
       <div className="mr-4 flex items-center gap-8">
         {/* links should have hover state where a underline animates in */}
