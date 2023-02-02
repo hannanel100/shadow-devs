@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Heebo, Barlow } from "@next/font/google";
-import Navbar from "./Navbar";
+import { Navbar } from "../components";
 
 const heebo = Heebo({
   subsets: ["latin"],
