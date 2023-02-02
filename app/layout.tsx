@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Heebo, Barlow } from "@next/font/google";
-import { Navbar } from "../components";
+import { Navbar, Footer } from "../components";
 
 const heebo = Heebo({
   subsets: ["latin"],
@@ -30,6 +30,7 @@ export default function RootLayout({
         <div className="mx-auto flex flex-col items-center justify-center">
           {children}
         </div>
+        <Footer />
       </body>
     </html>
   );
