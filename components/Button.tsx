@@ -9,6 +9,7 @@ type ButtonProps = {
   onClick: () => void;
   type?: "button" | "submit" | "reset";
   icon?: string;
+  disabled?: boolean;
 };
 const Button = ({ text, onClick, type = "button", icon }: ButtonProps) => {
   // tailwindcss classes for each type of button

@@ -1,16 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 import Button from "./Button";
+import { Form } from "@/types/forms";
+import NewsLetterForm from "./NewsLetterForm";
 // the footer component, with a logo on the left side, social media icons on the right side, and a link to the privacy policy
 // under this should be a form to subscribe to the newsletter
 const Footer = () => {
-  const [email, setEmail] = useState("");
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(email);
-  };
+  
+
   return (
     <footer className="mt-8 border-t-2 border-solid border-dark-slate-gray">
       <div className="flex flex-col items-center justify-between py-8 px-4 md:flex-row">
@@ -55,29 +54,7 @@ const Footer = () => {
         </div>
       </div>
       {/* newsletter form */}
-      <div className="flex flex-col gap-8 py-8 px-4 ">
-        <div className="flex items-center gap-4">
-          <h3 className="text-xl font-bold">Subscribe to our newsletter</h3>
-        </div>
-        <div className="flex items-center gap-4">
-          <form onSubmit={(e) => handleSubmit(e)} className="flex gap-2">
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-60 rounded-lg border-2
-               border-gray-300 p-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-mountain-majesty"
-            />
-            <Button
-              text="Subscribe"
-              type="submit"
-              onClick={() => console.log("clicked")}
-            />
-          </form>
-        </div>
-      </div>
+      <NewsLetterForm />
     </footer>
   );
 };

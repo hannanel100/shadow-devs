@@ -4,17 +4,31 @@
 }
 import Image from "next/image";
 import { Button } from "./";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
     <section className="bg-primary text-black">
-      <div className="container mx-auto flex items-end gap-8 px-4 py-20">
+      <div className="container mx-auto flex flex-col items-end gap-8 px-4 py-20 md:flex-row">
         <div className="flex flex-col items-center lg:flex-row">
           <div className="w-full ">
             <h1 className="mb-4 text-5xl font-bold">
               Find your{" "}
-              <span className="border-b-4 border-solid border-purple-mountain-majesty">
+              <span className="relative">
                 mentor
+                <motion.span
+                  className="absolute bottom-0 left-0 z-10 border-b-4 border-dashed border-dark-slate-gray"
+                  whileInView={{
+                    width: "100%",
+                    transition: {
+                      type: "spring",
+                      bounce: 0.5,
+                      duration: 2,
+                    },
+                  }}
+                  initial={{ width: 0 }}
+                  viewport={{ once: true }}
+                ></motion.span>
               </span>
             </h1>
             <p className="mb-8 text-2xl" data-testid="description">
@@ -29,7 +43,7 @@ const Hero = () => {
             />
           </div>
         </div>
-        <div className="flex-grow-0">
+        <div className="hidden flex-grow-0 md:block">
           <Image
             src={"/devs.png"}
             alt="devs"
