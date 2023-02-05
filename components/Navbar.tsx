@@ -1,9 +1,15 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "./Button";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "pages/api/auth/[...nextauth]";
+import { SignOut, SignIn } from "@/app/actions";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
+  // const session = await getServerSession(authOptions);
+  // console.log("🚀 ~ file: Navbar.tsx:9 ~ Navbar ~ session", session);
+  const { data: session } = useSession();
+  console.log("🚀 ~ file: Navbar.tsx:12 ~ Navbar ~ session", session);
   return (
     <nav
       role="navbar"
@@ -23,12 +29,14 @@ const Navbar = () => {
           Resources
           <span className="block h-0.5 max-w-0 bg-red-600 transition-all duration-500 group-hover:max-w-full"></span>
         </Link>
-        <Button
-          text="login with github"
-          type="button"
-          icon="github"
-          onClick={() => console.log("clicked")}
-        />
+        {session?.user && (
+          <Link href="profile" className="group">
+            Profile
+            <span className="block h-0.5 max-w-0 bg-red-600 transition-all duration-500 group-hover:max-w-full"></span>
+          </Link>
+        )}
+
+        {session?.user ? <SignOut /> : <SignIn />}
       </div>
     </nav>
   );
