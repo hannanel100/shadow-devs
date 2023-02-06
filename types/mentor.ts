@@ -1,8 +1,8 @@
 // type for mentor users
 export interface Mentor {
-  avatar: string;
+  image: string;
   name: string;
-  description: string;
+  bio?: string | null;
   location: string;
   rating: number;
   tags: string[];

@@ -1,14 +1,14 @@
 // a component to display a mentor card, which will be used in the leading mentors section of the home page
-// this will include the avatar of the mentor, in a circle, his or hers name, a short description, tags, and location
+// this will include the image of the mentor, in a circle, his or hers name, a short bio, tags, and location
 
 import { Mentor } from "@/types/mentor";
 import Image from "next/image";
 import { BsStarFill, BsStarHalf } from "react-icons/bs";
 // the mentor card will also have a rating, which will be displayed as stars
 const MentorCard = ({
-  avatar,
+  image,
   name,
-  description,
+  bio,
   tags,
   location,
   rating,
@@ -19,9 +19,9 @@ const MentorCard = ({
       className="flex min-w-[400px] max-w-sm flex-1 flex-col items-center  gap-4 self-stretch transition duration-300 ease-in-out hover:scale-105"
     >
       <div className="grid w-full place-content-center rounded-lg bg-[url('/devs.png')] bg-bottom py-4">
-        {/* the avatar will be displayed in a circle */}
+        {/* the image will be displayed in a circle */}
         <Image
-          src={avatar}
+          src={image}
           alt={name}
           width={100}
           height={100}
@@ -31,7 +31,7 @@ const MentorCard = ({
       </div>
 
       <div className="flex flex-col items-center   gap-4 rounded-b-3xl bg-opal p-4 shadow-xl">
-        <p>{description}</p>
+        <p>{bio}</p>
         {/* the tags will be displayed as a list of badges */}
         <ul className="flex flex-wrap gap-2">
           {tags.map((tag, index) => (

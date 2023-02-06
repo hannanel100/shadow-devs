@@ -15,7 +15,7 @@ export function SignOut() {
 export function SignIn() {
   return (
     <Button
-      onClick={() => signIn()}
+      onClick={() => signIn("github")}
       text="login with github"
       type="button"
       icon="github"
