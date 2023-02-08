@@ -5,6 +5,7 @@
 import Image from "next/image";
 import { Button } from "./";
 import { motion } from "framer-motion";
+import { SignIn } from "@/app/actions";
 
 const Hero = () => {
   return (
@@ -36,11 +37,7 @@ const Hero = () => {
               them for the day to better understand their work and get advice on
               how to improve your skills.
             </p>
-            <Button
-              text="login with github"
-              onClick={() => console.log("clicked")}
-              icon="github"
-            />
+            <SignIn />
           </div>
         </div>
         <div className="hidden flex-grow-0 md:block">
