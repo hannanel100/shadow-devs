@@ -13,9 +13,14 @@ export const authOptions: AuthOptions = {
     }),
   ],
   session: {
-    strategy: "database",
+    strategy: "jwt",
   },
   adapter: PrismaAdapter(prisma),
+  secret: String(process.env.NEXTAUTH_SECRET),
+  debug: true,
+  pages: {
+    newUser: "/new-user",
+  },
 };
 
 export default NextAuth(authOptions);

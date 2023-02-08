@@ -55,11 +55,18 @@ const leadingMentors = [
 
 async function main() {
   // seed mentors with leadingMentors array, according to schema
-  for (const mentor of leadingMentors) {
-    await prisma.mentor.create({
-      data: mentor,
-    });
-  }
+  // for (const mentor of leadingMentors) {
+  //   await prisma.mentor.create({
+  //     data: mentor,
+  //   });
+  // }
+  // add user
+  await prisma.user.create({
+    data: {
+      name: "hannanel gershinsky",
+      location: "Jerusalem, Israel",
+    },
+  });
 }
 
 main()

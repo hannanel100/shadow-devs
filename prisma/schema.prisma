@@ -16,6 +16,34 @@ enum RoleName {
   ADMIN
 }
 
+enum Tags {
+  JAVASCRIPT
+  REACT
+  NODE
+  PYTHON
+  DJANGO
+  FLASK
+  RUBY
+  RAILS
+  C
+  JAVA
+  SWIFT
+  KOTLIN
+  GO
+  RUST
+  PHP
+  HTML
+  CSS
+  SASS
+  LESS
+  BOOTSTRAP
+  MATERIALIZE
+  TAILWIND
+  ANGULAR
+  VUE
+  TYPESCRIPT
+}
+
 // model User {
 //   id        Int      @id @default(autoincrement())
 //   image     String   @unique
@@ -28,47 +56,163 @@ enum RoleName {
 //   updatedAt DateTime @updatedAt
 // }
 
-model Mentor {
-  id       Int      @id @default(autoincrement())
-  image    String
-  location String
-  name     String
-  bio      String?
-  tags     String[]
-  rating   Float
-  mentees  Mentee[]
-}
+// model Mentor {
+//   id       Int      @id @default(autoincrement())
+//   image    String
+//   location String
+//   name     String
+//   bio      String?
+//   tags     String[]
+//   rating   Float
+//   mentees  Mentee[]
+//   User     User[]
+// }
 
-model Mentee {
-  id       Int      @id @default(autoincrement())
-  image    String   @unique
-  location String
-  name     String
-  bio      String?
-  tags     String[]
-  mentor   Mentor?  @relation(fields: [mentorId], references: [id])
-  mentorId Int?
-}
+// model Mentee {
+//   id       Int      @id @default(autoincrement())
+//   image    String   @unique
+//   location String
+//   name     String
+//   bio      String?
+//   tags     String[]
+//   mentor   Mentor?  @relation(fields: [mentorId], references: [id])
+//   mentorId Int?
+// }
 
+// model Account {
+//   id                 String    @id @default(uuid())
+//   compoundId         String    @unique @map(name: "compound_id")
+//   userId             String    @map(name: "user_id")
+//   providerType       String    @map(name: "provider_type")
+//   providerId         String    @map(name: "provider_id")
+//   providerAccountId  String    @map(name: "provider_account_id")
+//   refreshToken       String?   @map(name: "refresh_token")
+//   accessToken        String?   @map(name: "access_token")
+//   accessTokenExpires DateTime? @map(name: "access_token_expires")
+//   createdAt          DateTime  @default(now()) @map(name: "created_at")
+//   updatedAt          DateTime  @default(now()) @map(name: "updated_at")
+//   user               User      @relation(fields: [userId], references: [id])
+
+//   @@index([providerAccountId], name: "providerAccountId")
+//   @@index([providerId], name: "providerId")
+//   @@index([userId], name: "userId")
+//   @@map(name: "accounts")
+// }
+
+// model Session {
+//   id           String   @id @default(uuid())
+//   sessionToken String   @unique @map(name: "session_token")
+//   userId       String   @map(name: "user_id")
+//   expires      DateTime
+//   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   createdAt    DateTime @default(now()) @map(name: "created_at")
+//   updatedAt    DateTime @updatedAt @map(name: "updated_at")
+
+//   @@map(name: "sessions")
+// }
+
+// model User {
+//   id        String    @id @default(uuid())
+//   name      String?
+//   image     String?
+//   createdAt DateTime  @default(now()) @map(name: "created_at")
+//   updatedAt DateTime  @default(now()) @map(name: "updated_at")
+//   Account   Account[]
+//   Session   Session[]
+//   rating    Float?
+//   role      RoleName  @default(MENTEE)
+//   location  String
+//   bio       String?
+// //   tags      Tags[]
+
+// //   @@map(name: "users")
+// // }
+
+// // model VerificationToken {
+// //   identifier String
+// //   token      String   @unique
+// //   expires    DateTime
+
+// //   @@unique([identifier, token])
+// // }
+// model Account {
+//   id                 Int       @id @default(autoincrement())
+//   compoundId         String    @unique @map(name: "compound_id")
+//   userId             Int       @map(name: "user_id")
+//   providerType       String    @map(name: "provider_type")
+//   providerId         String    @map(name: "provider_id")
+//   providerAccountId  String    @map(name: "provider_account_id")
+//   refreshToken       String?   @map(name: "refresh_token")
+//   accessToken        String?   @map(name: "access_token")
+//   accessTokenExpires DateTime? @map(name: "access_token_expires")
+//   createdAt          DateTime  @default(now()) @map(name: "created_at")
+//   updatedAt          DateTime  @default(now()) @map(name: "updated_at")
+//   user               User      @relation(fields: [userId], references: [id])
+
+//   @@index([providerAccountId], name: "providerAccountId")
+//   @@index([providerId], name: "providerId")
+//   @@index([userId], name: "userId")
+//   @@map(name: "accounts")
+// }
+
+// model Session {
+//   id           Int      @id @default(autoincrement())
+//   userId       Int      @map(name: "user_id")
+//   expires      DateTime
+//   sessionToken String   @unique @map(name: "session_token")
+//   accessToken  String   @unique @map(name: "access_token")
+//   createdAt    DateTime @default(now()) @map(name: "created_at")
+//   updatedAt    DateTime @default(now()) @map(name: "updated_at")
+
+//   @@map(name: "sessions")
+// }
+
+// model User {
+//   id            Int       @id @default(autoincrement())
+//   name          String?
+//   email         String?   @unique
+//   emailVerified DateTime? @map(name: "email_verified")
+//   image         String?
+//   createdAt     DateTime  @default(now()) @map(name: "created_at")
+//   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
+//   rating        Float?
+//   role          RoleName  @default(MENTEE)
+//   location      String
+//   bio           String?
+//   tags          Tags[]
+//   Account       Account[]
+
+//   @@map(name: "users")
+// }
+
+// model VerificationRequest {
+//   id         Int      @id @default(autoincrement())
+//   identifier String
+//   token      String   @unique
+//   expires    DateTime
+//   createdAt  DateTime @default(now()) @map(name: "created_at")
+//   updatedAt  DateTime @default(now()) @map(name: "updated_at")
+
+//   @@map(name: "verification_requests")
+// }
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String? @db.Text
-  access_token       String? @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String? @db.Text
-  session_state      String?
-  oauth_token_secret String?
-  oauth_token        String?
+  id                       String  @id @default(cuid())
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  refresh_token_expires_in Int?
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([provider, providerAccountId])
+  @@unique([provider, providerAccountId], name: "provider_providerAccountId")
 }
 
 model Session {
@@ -82,7 +226,14 @@ model Session {
 model User {
   id            String    @id @default(cuid())
   name          String?
+  email         String?   @unique
+  emailVerified DateTime?
   image         String?
+  rating        Float?
+  role          RoleName  @default(MENTEE)
+  location      String?
+  bio           String?
+  tags          Tags[]
   accounts      Account[]
   sessions      Session[]
 }
