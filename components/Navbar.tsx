@@ -8,7 +8,8 @@ import { useSession } from "next-auth/react";
 const Navbar = () => {
   // const session = await getServerSession(authOptions);
   // console.log("🚀 ~ file: Navbar.tsx:9 ~ Navbar ~ session", session);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  console.log("🚀 ~ file: Navbar.tsx:12 ~ Navbar ~ status", status);
   console.log("🚀 ~ file: Navbar.tsx:12 ~ Navbar ~ session", session);
   return (
     <nav
@@ -16,8 +17,9 @@ const Navbar = () => {
       className="mt-4 flex items-center justify-between border-b border-solid border-slate-300 pb-4 font-navbar font-bold"
     >
       <div className="ml-4 flex gap-4">
-        <Image width={80} height={80} src="/next.svg" alt="logo" />
-        <h5>Shadow Devs</h5>
+        <Link href="/">
+          <Image width={60} height={60} src="/logo.png" alt="logo" />
+        </Link>
       </div>
       <div className="mr-4 flex items-center gap-8">
         {/* links should have hover state where a underline animates in */}
