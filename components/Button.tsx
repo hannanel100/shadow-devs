@@ -6,7 +6,7 @@
 import { FaGithub } from "react-icons/fa";
 type ButtonProps = {
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
   type?: "button" | "submit" | "reset";
   icon?: string;
   disabled?: boolean;
