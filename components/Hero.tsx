@@ -13,12 +13,12 @@ const Hero = () => {
       <div className="container mx-auto flex flex-col items-end gap-8 px-4 py-20 md:flex-row">
         <div className="flex flex-col items-center lg:flex-row">
           <div className="w-full ">
-            <h1 className="mb-4 text-5xl font-bold">
+            <h1 className="mb-4 text-4xl font-bold md:text-5xl">
               Find your{" "}
-              <span className="relative">
+              <span className="relative z-0">
                 mentor
                 <motion.span
-                  className="absolute bottom-0 left-0 z-10 border-b-4 border-dashed border-dark-slate-gray"
+                  className="absolute bottom-0 left-0 border-b-4 border-dashed border-dark-slate-gray"
                   whileInView={{
                     width: "100%",
                     transition: {
