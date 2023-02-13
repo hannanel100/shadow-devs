@@ -1,23 +1,8 @@
-"use client";
 import "./globals.css";
-import { SessionProvider } from "next-auth/react";
 import { Heebo, Barlow } from "@next/font/google";
 import { Navbar, Footer } from "../components";
-
-// async function getSession(cookie: string): Promise<Session> {
-//   const response = await fetch(
-//     `${process.env.LOCAL_AUTH_URL}/api/auth/session`,
-//     {
-//       headers: {
-//         cookie,
-//       },
-//     }
-//   );
-
-//   const session = await response.json();
-
-//   return Object.keys(session).length > 0 ? session : null;
-// }
+import AuthContext from "./AuthContext";
+import { Session } from "next-auth";
 
 const heebo = Heebo({
   subsets: ["latin"],
@@ -35,18 +20,18 @@ export default function RootLayout({
   session,
 }: {
   children: React.ReactNode;
-  session: any;
+  session: Session;
 }) {
   return (
     <html lang="en" className={`${heebo.className} ${barlow.className}`}>
       <body>
-        <SessionProvider session={session}>
+        <AuthContext session={session}>
           <Navbar />
           <div className="mx-auto flex flex-col items-center justify-center">
             {children}
           </div>
           <Footer />
-        </SessionProvider>
+        </AuthContext>
       </body>
     </html>
   );
