@@ -1,6 +1,6 @@
 import React from "react";
 type InputProps = {
-  ref?: React.RefObject<HTMLInputElement>;
+  reference?: React.RefObject<HTMLInputElement>;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
@@ -9,7 +9,7 @@ type InputProps = {
   placeholder?: string;
 };
 const Input = ({
-  ref,
+  reference,
   value,
   onChange,
   type,
@@ -19,7 +19,7 @@ const Input = ({
 }: InputProps) => {
   return (
     <input
-      ref={ref}
+      ref={reference}
       value={value}
       name={name}
       required={required}

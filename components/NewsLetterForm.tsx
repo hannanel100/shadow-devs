@@ -21,7 +21,7 @@ const NewsLetterForm = () => {
             name="email"
             placeholder="Enter your email"
             // value={email}
-            ref={inputEl}
+            reference={inputEl}
             required={true}
           />
           <Button
