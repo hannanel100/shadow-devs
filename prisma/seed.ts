@@ -1,6 +1,6 @@
 import { PrismaClient, User } from "@prisma/client";
 import { Mentor } from "@/types/mentor";
-import cuid from "cuid";
+import { createId as cuid } from "@paralleldrive/cuid2";
 const prisma = new PrismaClient();
 
 const leadingMentors = [
