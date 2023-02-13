@@ -225,10 +225,10 @@ model Session {
 
 model User {
   id            String    @id @default(cuid())
-  name          String?
+  name          String?   @unique
   email         String?   @unique
   emailVerified DateTime?
-  image         String?
+  image         String?   @unique
   rating        Float?
   role          RoleName  @default(MENTEE)
   location      String?
@@ -236,6 +236,9 @@ model User {
   tags          Tags[]
   accounts      Account[]
   sessions      Session[]
+
+  Mentor Mentor[]
+  Mentee Mentee[]
 }
 
 model VerificationToken {
@@ -244,4 +247,19 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Mentor {
+  id     String   @id @default(cuid())
+  user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  Mentee Mentee[]
+}
+
+model Mentee {
+  id       String  @id @default(cuid())
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId   String
+  mentorId String
+  Mentor   Mentor? @relation(fields: [mentorId], references: [id])
 }

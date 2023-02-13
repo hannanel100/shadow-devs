@@ -1,9 +1,8 @@
-import { PrismaClient } from "@prisma/client";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth, { AuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
+import prisma from "../../../lib/prismadb";
 
-const prisma = new PrismaClient();
 export const authOptions: AuthOptions = {
   // Configure one or more authentication providers
   providers: [
@@ -13,7 +12,7 @@ export const authOptions: AuthOptions = {
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: "database",
   },
   adapter: PrismaAdapter(prisma),
   secret: String(process.env.NEXTAUTH_SECRET),
@@ -21,6 +20,13 @@ export const authOptions: AuthOptions = {
   pages: {
     newUser: "/new-user",
   },
+  callbacks: {
+    async session({ session, token, user }) {
+      session.user.role = user.role;
+      return session;
+    },
+  },
+  // A database is optional, but required to persist accounts in a database
 };
 
 export default NextAuth(authOptions);

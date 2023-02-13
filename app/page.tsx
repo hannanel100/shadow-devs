@@ -4,7 +4,7 @@ import LeadingMentors from "./LeadingMentors";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-8 font-primary">
+    <main className="mt-8 flex flex-col gap-8 font-primary">
       <Hero />
       {/* cool section separator */}
       <HowItWorks />

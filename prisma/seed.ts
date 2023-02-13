@@ -1,5 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, User } from "@prisma/client";
 import { Mentor } from "@/types/mentor";
+import cuid from "cuid";
 const prisma = new PrismaClient();
 
 const leadingMentors = [
@@ -61,11 +62,23 @@ async function main() {
   //   });
   // }
   // add user
-  await prisma.user.create({
-    data: {
-      name: "hannanel gershinsky",
-      location: "Jerusalem, Israel",
-    },
+  const users: User[] = [];
+  for (let i = 1; i <= 10; i++) {
+    users.push({
+      name: `User ${i}`,
+      email: `user${i}@example.com`,
+      role: "MENTOR",
+      id: cuid(),
+      emailVerified: null,
+      image: null,
+      rating: null,
+      location: null,
+      bio: null,
+      tags: [],
+    });
+  }
+  await prisma.user.createMany({
+    data: users,
   });
 }
 
