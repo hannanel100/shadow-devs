@@ -70,7 +70,7 @@ const NewUser = () => {
       {/* a form with fields:  location, bio, tags and a role switch - mentor or mentee*/}
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-8">
-        <div className="flex justify-between gap-4">
+        <div className="flex items-center justify-between gap-4">
           <label htmlFor="location">Location</label>
           <Input
             type="text"
@@ -80,7 +80,7 @@ const NewUser = () => {
             onChange={(e) => setLocation(e.target.value)}
           />
         </div>
-        <div className="flex justify-between gap-4">
+        <div className="flex items-start justify-between gap-4">
           <label htmlFor="bio">Bio</label>
           {/* textarea in the style of input */}
           <textarea
@@ -95,7 +95,7 @@ const NewUser = () => {
             border-gray-300 p-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-mountain-majesty"
           ></textarea>
         </div>
-        <div className="flex justify-between gap-4">
+        <div className="flex items-center justify-between gap-4">
           <label htmlFor="tags">Tags</label>
 
           {/* Combobox with multiple selected tags, in the style of the Input component */}
@@ -175,7 +175,7 @@ const NewUser = () => {
             )}
           </Combobox>
         </div>
-        <div className="flex justify-between gap-4">
+        <div className="flex items-center justify-between gap-4">
           <label htmlFor="role">Role</label>
           <Switch.Group>
             <div className="flex items-center">
@@ -199,7 +199,9 @@ const NewUser = () => {
             </div>
           </Switch.Group>
         </div>
-        <Button type="submit" text="Submit" />
+        <div className="flex w-full items-center justify-center">
+          <Button type="submit" text="Submit" icon="save" />
+        </div>
       </form>
     </div>
   );

@@ -3,12 +3,12 @@
 // example:
 // <Button text="login" onClick={login} type="submit" icon="github" />
 //
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaSave } from "react-icons/fa";
 type ButtonProps = {
   text: string;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
-  icon?: string;
+  icon?: "github" | "save";
   disabled?: boolean;
 };
 const Button = ({ text, onClick, type = "button", icon }: ButtonProps) => {
@@ -25,10 +25,14 @@ const Button = ({ text, onClick, type = "button", icon }: ButtonProps) => {
       onClick={onClick}
       className={`${
         type ? buttonClasses[type] : ""
-      }  flex items-center rounded-3xl py-2 px-4 font-bold uppercase text-white transition duration-300 ease-in-out`}
+      }  flex items-center justify-center rounded-3xl py-2 px-4 font-bold uppercase text-white transition duration-300 ease-in-out`}
     >
       {text}
-      {icon && <FaGithub data-testid="icon" className="ml-2" />}
+      {icon === "github" ? (
+        <FaGithub data-testid="icon" className="ml-2" />
+      ) : icon === "save" ? (
+        <FaSave data-testid="icon" className="ml-2" />
+      ) : null}
     </button>
   );
 };
