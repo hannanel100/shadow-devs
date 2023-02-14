@@ -17,15 +17,13 @@ const barlow = Barlow({
 });
 export default function RootLayout({
   children,
-  session,
 }: {
   children: React.ReactNode;
-  session: Session;
 }) {
   return (
     <html lang="en" className={`${heebo.className} ${barlow.className}`}>
       <body>
-        <AuthContext session={session}>
+        <AuthContext >
           <Navbar />
           <div className="mx-auto flex flex-col items-center justify-center">
             {children}
