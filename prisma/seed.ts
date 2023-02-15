@@ -54,6 +54,14 @@ const leadingMentors = [
   },
 ];
 
+const mockLocations = [
+  "Berlin, Germany",
+  "London, UK",
+  "New York, USA",
+  "Paris, France",
+  "Tokyo, Japan",
+  "Jerusalem, Israel",
+];
 async function main() {
   // seed mentors with leadingMentors array, according to schema
   // for (const mentor of leadingMentors) {
@@ -67,14 +75,15 @@ async function main() {
     users.push({
       name: `User ${i}`,
       email: `user${i}@example.com`,
-      role: "MENTOR",
+      role: i % 2 === 0 ? "MENTOR" : "MENTEE",
       id: cuid(),
       emailVerified: null,
       image: null,
       rating: null,
-      location: null,
+      location: mockLocations[Math.floor(Math.random() * mockLocations.length)],
       bio: null,
       tags: [],
+      mentorId: null,
     });
   }
   await prisma.user.createMany({
