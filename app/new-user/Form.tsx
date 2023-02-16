@@ -1,18 +1,28 @@
 "use client";
-import { useState, Fragment, useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { Combobox, Listbox, Switch } from "@headlessui/react";
-import { BsCheck } from "react-icons/bs";
+import { useEffect } from "react";
+import { Switch } from "@headlessui/react";
 import { Tags } from "@prisma/client";
 import { Button, Input } from "../../components";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import CustomSwitch from "../../components/CustomSwitch";
-// import CustomCombobox from "@/components/CustomCombobox";
-type Inputs = {
+import axios from "axios";
+
+type FormValues = {
   location: string;
   bio: string;
-  tags: string[];
-  role: "mentor" | "mentee";
+  tags: Tags[];
+  role: boolean;
+};
+//function for updating users details, to be used in react-query
+const updateUser = async (data: FormValues) => {
+  const { role } = data;
+  const updatedData = {
+    ...data,
+    role: role === true ? "mentor" : "mentee",
+  };
+
+  const res = await axios.post("/api/user/update", updatedData);
+  return res;
 };
 
 const tagsList = Object.values(Tags).map((tag, index) => {
@@ -23,37 +33,13 @@ const Form = () => {
   const {
     register,
     handleSubmit,
-    watch,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormValues>();
 
-  const [query, setQuery] = useState<string>("");
-  const [tagsArray, setTagsArray] = useState<string[]>([]);
-  const [bio, setBio] = useState<string>("");
-  const [location, setLocation] = useState<string>("");
-  const [enabled, setEnabled] = useState(false);
-  const { data: session } = useSession();
-  const filteredTags =
-    query === ""
-      ? tagsList
-      : tagsList.filter((tag) => {
-          return tag.name.toLowerCase().includes(query.toLowerCase());
-        });
-  const handleTags = (tags: string[]) => {
-    setTagsArray(tags);
-    setQuery("");
-  };
-  const onSubmit: any = (data: any) => {
-    const { location, bio, tags, role } = data;
-
-    const updatedRole = role === true ? "mentor" : "mentee";
-    console.log("🚀 ~ file: Form.tsx:50 ~ Form ~ updatedRole", updatedRole);
-    const updatedData = {
-      ...data,
-    };
-    updatedData.role = updatedRole;
-    console.log("🚀 ~ file: Form.tsx:54 ~ Form ~ updatedData", updatedData);
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    const res = await updateUser(data);
+    console.log("🚀 ~ file: Form.tsx:50 ~ Form ~ json", res);
   };
   useEffect(() => {
     errors ? console.log("errors: ", errors) : console.log("no errors");
@@ -61,7 +47,9 @@ const Form = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
       <div className="flex items-center justify-between gap-4">
-        <label htmlFor="location">Location</label>
+        <label htmlFor="location">
+          Location<span className="text-red-500">*</span>
+        </label>
         <Controller
           name="location"
           control={control}
@@ -72,6 +60,7 @@ const Form = () => {
               type="text"
               name="location"
               placeholder="City, Country"
+              required={true}
             />
           )}
         />
@@ -94,7 +83,12 @@ const Form = () => {
         ></textarea>
       </div>
       <div className="flex items-center justify-between gap-4">
-        <label htmlFor="tags">Tags</label>
+        <label htmlFor="tags" className="flex flex-col">
+          <span>
+            Tags<span className="text-red-500">*</span>
+          </span>
+          <span className="text-xs">(At least one...)</span>
+        </label>
 
         {/* Combobox with multiple selected tags, in the style of the Input component */}
         {/* <Controller
