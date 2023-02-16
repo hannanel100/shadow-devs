@@ -1,6 +1,6 @@
 import React from "react";
 import prisma from "@/lib/prismadb";
-import { Mentor, User } from "@prisma/client";
+import { User } from "@prisma/client";
 const Mentors = async () => {
   const mentors: User[] = await prisma.user.findMany({
     where: {
