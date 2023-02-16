@@ -16,6 +16,7 @@ const Input = ({
   name,
   required,
   placeholder,
+  ...rest
 }: InputProps) => {
   return (
     <input
@@ -27,6 +28,7 @@ const Input = ({
       onChange={onChange}
       type={type}
       placeholder={placeholder}
+      {...rest}
       className="w-60 rounded-lg border-2
   border-gray-300 p-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-mountain-majesty"
     />
