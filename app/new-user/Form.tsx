@@ -7,8 +7,14 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import CustomSwitch from "../../components/CustomSwitch";
 import axios from "axios";
 
+type FormValues = {
+  location: string;
+  bio: string;
+  tags: Tags[];
+  role: boolean;
+};
 //function for updating users details, to be used in react-query
-const updateUser = async (data: any) => {
+const updateUser = async (data: FormValues) => {
   const { role } = data;
   const updatedData = {
     ...data,
@@ -29,9 +35,9 @@ const Form = () => {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormValues>();
 
-  const onSubmit: any = async (data: any) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const res = await updateUser(data);
     console.log("🚀 ~ file: Form.tsx:50 ~ Form ~ json", res);
   };
