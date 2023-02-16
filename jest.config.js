@@ -19,7 +19,7 @@ const customJestConfig = {
   // you will have to add the moduleNameMapper in order for jest to resolve your absolute paths.
   // The paths have to be matching with the paths option within the compilerOptions in the tsconfig.json
   // For example:
-
+  maxWorkers: 1,
   moduleNameMapper: {
     "^@/components/(.*)$": "<rootDir>/components/$1",
     "^@/hooks/(.*)$": "<rootDir>/hooks/$1",

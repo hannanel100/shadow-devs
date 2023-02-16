@@ -3,7 +3,6 @@
   /* Hero section with title, description text and call to action button */
 }
 import Image from "next/image";
-import { Button } from "./";
 import { motion } from "framer-motion";
 import { SignIn } from "@/app/actions";
 import { useSession } from "next-auth/react";
@@ -37,7 +36,7 @@ const Hero = () => {
               Look up mentors in your area and get in touch with them. Shadow
               them for the day to better understand their work and get advice on
               how to improve your skills.
-            </p> 
+            </p>
             {status === "unauthenticated" && <SignIn />}
           </div>
         </div>
