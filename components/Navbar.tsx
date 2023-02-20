@@ -8,6 +8,7 @@ import { SignOut, SignIn } from "@/app/actions";
 import { useSession } from "next-auth/react";
 import { Transition } from "@headlessui/react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import NavbarDropdown from "./NavbarDropdown";
 
 const Navbar = () => {
   // const session = await getServerSession(authOptions);
@@ -74,7 +75,7 @@ const Navbar = () => {
                 </li>
               );
             })}
-            {session?.user ? <SignOut /> : <SignIn />}
+            {session?.user ? <NavbarDropdown /> : <SignIn />}
           </ul>
           {/* links should have hover state where a underline animates in */}
           {/* {session?.user.role === "MENTEE" && (

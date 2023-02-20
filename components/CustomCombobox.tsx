@@ -1,3 +1,4 @@
+"use client";
 import React, { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { BsCheck, BsArrowUp } from "react-icons/bs";
@@ -37,7 +38,6 @@ export const CustomCombobox = React.forwardRef<
               border-gray-300 p-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-mountain-majesty"
             displayValue={(tag: any) => tag.name}
             onChange={(event) => setQuery(event.target.value)}
-            
           />
 
           <Combobox.Button className="absolute inset-0  flex items-center " />

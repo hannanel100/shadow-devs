@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Switch } from "@headlessui/react";
 import { useController } from "react-hook-form";

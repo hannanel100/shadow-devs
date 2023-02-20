@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Switch } from "@headlessui/react";
 import { Tags } from "@prisma/client";
 import { Button, Input } from "../../components";
@@ -21,8 +22,14 @@ const updateUser = async (data: FormValues) => {
     role: role === true ? "mentor" : "mentee",
   };
 
-  const res = await axios.post("/api/user/update", updatedData);
-  return res;
+  try {
+    const res = await axios.post("/api/user/update", updatedData);
+    // return loading while fetching
+    // return data when fetched
+    if (res) return res.data;
+  } catch (error) {
+    return error;
+  }
 };
 
 const tagsList = Object.values(Tags).map((tag, index) => {
@@ -30,16 +37,23 @@ const tagsList = Object.values(Tags).map((tag, index) => {
 });
 
 const Form = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    const res = await updateUser(data);
-    console.log("🚀 ~ file: Form.tsx:50 ~ Form ~ json", res);
+    try {
+      const resData = await updateUser(data);
+      console.log("🚀 ~ file: Form.tsx:50 ~ Form ~ json", resData);
+      // navigate to home
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
   useEffect(() => {
     errors ? console.log("errors: ", errors) : console.log("no errors");
@@ -126,12 +140,17 @@ const Form = () => {
         </Switch.Group>
       </div>
       <div className="flex w-full items-center justify-center">
-        <Button
-          type="submit"
-          text="Submit"
-          icon="save"
-          disabled={Object.values(errors).length > 0 ? true : false}
-        />
+        {isSubmitting ? (
+          // loading spinner
+          <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-purple-mountain-majesty"></div>
+        ) : (
+          <Button
+            type="submit"
+            text="Submit"
+            icon="save"
+            disabled={Object.values(errors).length > 0 ? true : false}
+          />
+        )}
       </div>
     </form>
   );
