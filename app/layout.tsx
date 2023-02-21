@@ -23,12 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${heebo.className} ${barlow.className}`}>
       <body>
-        <AuthContext >
-          <Navbar />
-          <div className="mx-auto flex flex-col items-center justify-center">
-            {children}
+        <AuthContext>
+          <div className="flex flex-col">
+            <Navbar />
+            <div className="mx-auto mt-28 flex flex-col items-center justify-center">
+              {children}
+            </div>
+            <Footer />
           </div>
-          <Footer />
         </AuthContext>
       </body>
     </html>
