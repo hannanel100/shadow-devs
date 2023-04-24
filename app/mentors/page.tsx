@@ -1,12 +1,12 @@
-import React from "react";
-import prisma from "@/lib/prismadb";
-import { User } from "@prisma/client";
+// import React from "react";
+// import prisma from "@/lib/prismadb";
+// import { User } from "@prisma/client";
 const Mentors = async () => {
-  const mentors: User[] = await prisma.user.findMany({
-    where: {
-      role: "MENTOR",
-    },
-  });
+  // const mentors: User[] = await prisma.user.findMany({
+  //   where: {
+  //     role: "MENTOR",
+  //   },
+  // });
   return (
     <div>
       Mentors Page
