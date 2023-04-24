@@ -10,9 +10,10 @@ const Mentors = async () => {
   return (
     <div>
       Mentors Page
-      {mentors?.map((mentor: User) => (
+      {/* {mentors?.map((mentor: User) => (
         <div key={mentor.id}>{mentor.name}</div>
-      ))}
+      ))} */}
+      WIP
     </div>
   );
 };
