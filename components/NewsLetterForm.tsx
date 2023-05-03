@@ -8,7 +8,6 @@ import { Form } from "@/types/forms";
 import Input from "./Input";
 const NewsLetterForm = () => {
   const { form, subscribe, inputEl } = useSubscribeToNewsletter();
-  console.log(inputEl.current?.value);
   return (
     <div className="flex flex-col gap-8 py-8 px-4 ">
       <div className="flex items-center gap-4">

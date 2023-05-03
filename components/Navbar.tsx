@@ -3,7 +3,6 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "pages/api/auth/[...nextauth]";
 import { SignOut, SignIn } from "@/app/actions";
 import { useSession } from "next-auth/react";
 import { Transition } from "@headlessui/react";
